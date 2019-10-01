@@ -11,9 +11,16 @@ namespace Framework.Domain.Entieis
     {
         private readonly List<IEvent> _events;
         protected BaseEntity() => _events = new List<IEvent>();
+        protected void HandleEvent(IEvent @event)
+        {
+            SetStateByEvent(@event);
+            ValidateInvariants();
+            Raise(@event);
+        }
         protected void Raise(IEvent @event) => _events.Add(@event);
         public IEnumerable<IEvent> GetChanges() => _events.AsEnumerable();
         public void ClearChanges() => _events.Clear();
         protected abstract void ValidateInvariants();
+        protected abstract void SetStateByEvent(IEvent @event);
     }
 }

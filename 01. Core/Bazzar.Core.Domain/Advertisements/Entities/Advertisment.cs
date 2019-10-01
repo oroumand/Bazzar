@@ -1,8 +1,11 @@
 ﻿using Bazzar.Core.Domain.Advertisements.Events;
 using Bazzar.Core.Domain.Advertisements.ValueObjects;
 using Framework.Domain.Entieis;
+using Framework.Domain.Events;
 using Framework.Domain.Exceptions;
 using Framework.Tools.Enums;
+using System;
+
 namespace Bazzar.Core.Domain.Advertisements.Entities
 {
     public class Advertisment : BaseEntity<AdvertismentId>
@@ -20,13 +23,10 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         #region Constructors
         public Advertisment(AdvertismentId id, UserId ownerId)
         {
-            Id = id;
-            OwnerId = ownerId;
-            ValidateInvariants();
-            Raise(new AdvertismentCreated
+            HandleEvent(new AdvertismentCreated
             {
-                Id = Id,
-                OwnerId = OwnerId
+                Id = id,
+                OwnerId = ownerId
             });
         }
         #endregion
@@ -44,9 +44,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         }
         public void UpdateText(AdvertismentText text)
         {
-            Text = text;
-            ValidateInvariants();
-            Raise(new AdvertismentTextUpdated
+            HandleEvent(new AdvertismentTextUpdated
             {
                 Id = Id,
                 AdvertismentText = text
@@ -54,9 +52,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         }
         public void UpdatePrice(Price price)
         {
-            Price = price;
-            ValidateInvariants();
-            Raise(new AdvertismentPriceUpdated
+            HandleEvent(new AdvertismentPriceUpdated
             {
                 Id = Id,
                 Price = price
@@ -64,11 +60,9 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         }
         public void RequestToPublish()
         {
-            State = AdvertismentState.ReviewPending;
-            ValidateInvariants();
-            Raise(new AdvertismentSentForReview
+            HandleEvent(new AdvertismentSentForReview
             {
-                Id = Id,             
+                Id = Id,
             });
         }
 
@@ -93,6 +87,32 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
             if (!isValid)
             {
                 throw new InvalidEntityStateException(this, $"مقدار تنظیم شده برای آگهی در وضیعت {State.GetDescription()} غیر قابل قبول است");
+            }
+        }
+
+        protected override void SetStateByEvent(IEvent @event)
+        {
+            switch (@event)
+            {
+                case AdvertismentCreated e:
+                    Id = new AdvertismentId(e.Id);
+                    OwnerId = new UserId(e.OwnerId);
+                    State = AdvertismentState.Inactive;
+                    break;
+                case AdvertismentPriceUpdated e:
+                    Price = new Price(Rial.FromLong( e.Price));
+                    break;
+                case AdvertismentSentForReview e:
+                    State = AdvertismentState.ReviewPending;
+                    break;
+                case AdvertismentTextUpdated e:
+                    Text = new AdvertismentText(e.AdvertismentText);
+                    break;
+                case AdvertismentTitleChanged e:
+                    Title = new AdvertismentTitle(e.Title);
+                    break;
+                default:
+                    throw new InvalidOperationException("امکان اجرای عملیات درخواستی وجود ندارد");
             }
         }
         #endregion
