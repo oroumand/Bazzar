@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\00. Framework\Framework.Domain\Framework.Domain.csproj" />
+    <ProjectReference Include="..\..\Framework.Tools\Framework.Tools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Advertisements\Exceptions\" />
+  </ItemGroup>
+
+</Project>
