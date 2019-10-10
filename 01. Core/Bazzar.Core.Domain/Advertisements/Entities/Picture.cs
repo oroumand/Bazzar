@@ -8,7 +8,13 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
 {
     public class Picture : BaseEntity<Guid>
     {
+        #region Fields
+        public PictureSize Size { get; private set; }
+        public PictureUrl Location { get; private set; }
+        public int Order { get; private set; }
+        #endregion
 
+        #region Constructors
         private Picture()
         {
 
@@ -16,11 +22,9 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         public Picture(Action<IEvent> applier) : base(applier)
         {
         }
+        #endregion
 
-        public PictureSize Size { get; private set; }
-        public PictureUrl Location { get; private set; }
-        public int Order { get; private set; }
-
+        #region Methods
         protected override void SetStateByEvent(IEvent @event)
         {
             switch (@event)
@@ -44,6 +48,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
                 Height = newSize.Width,
                 Width = newSize.Width
             });
-        }
+        } 
+        #endregion
     }
 }

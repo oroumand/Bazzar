@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bazzar.Core.ApplicationServices.Advertisements.CommandHandlers;
+using Bazzar.Core.ApplicationServices.UserProfiles.CommandHandlers;
 using Bazzar.Core.Domain.Advertisements.Data;
+using Bazzar.Core.Domain.UserProfiles.Data;
 using Bazzar.Infrastructures.Data.InMemory;
 using Bazzar.Infrastructures.Data.InMemory.Advertisments;
 using Bazzar.Infrastructures.Data.SqlServer;
 using Bazzar.Infrastructures.Data.SqlServer.Advertisments;
+using Bazzar.Infrastructures.Data.SqlServer.UserProfiles;
 using Framework.Domain.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +43,8 @@ namespace Bazzar.EndPoints.API
             //services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
 
             services.AddScoped<IAdvertisementsRepository, EfAdvertismentRepository>();
+            services.AddScoped<IUserProfileRepository, EFUserProfileRepository>();
+
             services.AddScoped<IUnitOfWork, AdvertismentUnitOfWork>();
             services.AddDbContext<AdvertismentDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString("AddvertismentCnn")));
 
@@ -48,6 +53,12 @@ namespace Bazzar.EndPoints.API
             services.AddScoped<UpdateTextHandler>();
             services.AddScoped<UpdatePriceHandler>();
             services.AddScoped<RequestToPublishHandler>();
+
+            services.AddScoped<RegisterUserHandler>();
+            services.AddScoped<UpdateUserNameHandler>();
+            services.AddScoped<UpdateUserEmailHandler>();
+            services.AddScoped<UpdateUserDisplayNameHandler>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Advertisment", Version = "v1" });
