@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Tools", "Framewor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Core.ApplicationServices", "01. Core\Bazzar.Core.ApplicationServices\Bazzar.Core.ApplicationServices.csproj", "{8C17C513-657B-44AB-8385-95D9DE0403D4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{ECE481DD-B337-41FA-A8AD-92372C08567A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Infrastructures.Data.InMemory", "02. Infrastructures\Data\Bazzar.Infrastructures.Data.InMemory\Bazzar.Infrastructures.Data.InMemory.csproj", "{80F10448-8AD6-4AD5-86E1-14A313AA5A14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{8C17C513-657B-44AB-8385-95D9DE0403D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C17C513-657B-44AB-8385-95D9DE0403D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C17C513-657B-44AB-8385-95D9DE0403D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F10448-8AD6-4AD5-86E1-14A313AA5A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F10448-8AD6-4AD5-86E1-14A313AA5A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F10448-8AD6-4AD5-86E1-14A313AA5A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F10448-8AD6-4AD5-86E1-14A313AA5A14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,8 @@ Global
 		{73DBBC48-A02A-4F82-8F48-C8066D4D6D9A} = {DA0BC501-8640-489F-803E-78EE1532E079}
 		{8BFB53C2-3536-496D-A3A8-688508DA3996} = {6718B9DD-ACF2-48AF-8A9C-1E47790EF3A6}
 		{8C17C513-657B-44AB-8385-95D9DE0403D4} = {DA0BC501-8640-489F-803E-78EE1532E079}
+		{ECE481DD-B337-41FA-A8AD-92372C08567A} = {6ECB53B5-B7DE-4F51-A84C-65E4F023FA9B}
+		{80F10448-8AD6-4AD5-86E1-14A313AA5A14} = {ECE481DD-B337-41FA-A8AD-92372C08567A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66BD7A25-C7AA-44CF-B201-B4E5369B071A}
