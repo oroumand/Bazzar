@@ -8,7 +8,13 @@ namespace Bazzar.Core.Domain.Advertisements.ValueObjects
     public class AdvertismentTitle : BaseValueObject<AdvertismentTitle>
     {
 
-        private readonly string _value;
+        public string Value { get;private set; }
+
+        public static AdvertismentTitle FromString(string value) => new AdvertismentTitle(value);
+        private AdvertismentTitle()
+        {
+
+        }
         public AdvertismentTitle(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -19,11 +25,11 @@ namespace Bazzar.Core.Domain.Advertisements.ValueObjects
             {
                 throw new ArgumentOutOfRangeException("عنوان آگهی نباید بیش از 100 کاراکتر باشد", nameof(value));
             }
-            _value = value;
+            Value = value;
         }        
-        public override int ObjectGetHashCode() => _value.GetHashCode();
-        public override bool ObjectIsEqual(AdvertismentTitle otherObject) => _value == otherObject._value;
+        public override int ObjectGetHashCode() => Value.GetHashCode();
+        public override bool ObjectIsEqual(AdvertismentTitle otherObject) => Value == otherObject.Value;
 
-        public static implicit operator string(AdvertismentTitle advertismentTitle) => advertismentTitle._value;
+        public static implicit operator string(AdvertismentTitle advertismentTitle) => advertismentTitle.Value;
     }
 }

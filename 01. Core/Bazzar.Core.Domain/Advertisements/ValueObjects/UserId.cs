@@ -7,22 +7,26 @@ namespace Bazzar.Core.Domain.Advertisements.ValueObjects
 {
     public class UserId:BaseValueObject<UserId>
     {
-        private readonly Guid _value;
+        public Guid Value { get; private set; }
+        private UserId()
+        {
+
+        }
         public UserId(Guid value)
         {
             if (value == default)
                 throw new ArgumentException("شناسه کاربر نمی‌تواند خالی باشد", nameof(value));
-            _value = value;
+            Value = value;
         }
         public override int ObjectGetHashCode()
         {
-            return _value.GetHashCode();
+            return Value.GetHashCode();
         }
 
         public override bool ObjectIsEqual(UserId otherObject)
         {
-            return _value == otherObject._value;
+            return Value == otherObject.Value;
         }
-        public static implicit operator Guid(UserId userId) => userId._value;
+        public static implicit operator Guid(UserId userId) => userId.Value;
     }
 }

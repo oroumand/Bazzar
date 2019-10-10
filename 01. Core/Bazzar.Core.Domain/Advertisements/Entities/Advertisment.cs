@@ -8,10 +8,10 @@ using System;
 
 namespace Bazzar.Core.Domain.Advertisements.Entities
 {
-    public class Advertisment : BaseEntity<AdvertismentId>
+    public class Advertisment : BaseEntity<Guid>
     {
         #region Fields
-        public AdvertismentId Id { get; protected set; }
+        public Guid Id { get; protected set; }
         public UserId OwnerId { get; protected set; }
         public UserId ApprovedBy { get; protected set; }
         public AdvertismentTitle Title { get; protected set; }
@@ -21,7 +21,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         #endregion
 
         #region Constructors
-        public Advertisment(AdvertismentId id, UserId ownerId)
+        public Advertisment(Guid id, UserId ownerId)
         {
             HandleEvent(new AdvertismentCreated
             {
@@ -95,7 +95,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
             switch (@event)
             {
                 case AdvertismentCreated e:
-                    Id = new AdvertismentId(e.Id);
+                    Id = e.Id;
                     OwnerId = new UserId(e.OwnerId);
                     State = AdvertismentState.Inactive;
                     break;

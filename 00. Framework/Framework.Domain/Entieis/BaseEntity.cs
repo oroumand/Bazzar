@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Framework.Domain.Entieis
 {
-    public abstract class BaseEntity<TId> where TId : IEntityId, IEquatable<TId>
+    public abstract class BaseEntity<TId> 
     {
         private readonly List<IEvent> _events;
         protected BaseEntity() => _events = new List<IEvent>();

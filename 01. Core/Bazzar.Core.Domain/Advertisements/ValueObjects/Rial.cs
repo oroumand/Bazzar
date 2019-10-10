@@ -6,20 +6,26 @@ namespace Bazzar.Core.Domain.Advertisements.ValueObjects
 {
     public class Rial
     {
-        private readonly long _value;
+        
+        public long Value { get; private set; }
+
         public static Rial FromString(string value) => new Rial(long.Parse(value));
         public static Rial FromLong(long value) => new Rial(value);
         protected Rial(long value)
         {
-            _value = value;
+            Value = value;
+        }
+        private Rial()
+        {
+
         }
         public Rial Add(Rial rial)
         {
-            return new Rial(rial._value + _value);
+            return new Rial(rial.Value + Value);
         }
         public Rial Subtract(Rial rial)
         {
-            return new Rial(rial._value + _value);
+            return new Rial(rial.Value + Value);
         }
 
         public static Rial operator +(Rial leftSide, Rial rightSide)
@@ -31,6 +37,6 @@ namespace Bazzar.Core.Domain.Advertisements.ValueObjects
             return leftSide.Subtract(rightSide);
         }
 
-        public static implicit operator long(Rial rial) => rial._value;
+        public static implicit operator long(Rial rial) => rial.Value;
     }
 }

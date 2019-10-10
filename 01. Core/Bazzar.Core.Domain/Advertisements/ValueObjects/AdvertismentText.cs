@@ -5,18 +5,24 @@ namespace Bazzar.Core.Domain.Advertisements.ValueObjects
 {
     public class AdvertismentText : BaseValueObject<AdvertismentText>
     {
-        private readonly string _value;
+
+        public string Value { get; private set; }
+        public static AdvertismentText FromString(string value) => new AdvertismentText(value);
+        private AdvertismentText()
+        {
+
+        }
         public AdvertismentText(string value)
         {
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("برای متن آگهی مقدار لازم است", nameof(value));
             }
-            _value = value;
+            Value = value;
         }
-        public override int ObjectGetHashCode() => _value.GetHashCode();
-        public override bool ObjectIsEqual(AdvertismentText otherObject) => _value == otherObject._value;
+        public override int ObjectGetHashCode() => Value.GetHashCode();
+        public override bool ObjectIsEqual(AdvertismentText otherObject) => Value == otherObject.Value;
 
-        public static implicit operator string(AdvertismentText advertismentText) => advertismentText._value;
+        public static implicit operator string(AdvertismentText advertismentText) => advertismentText.Value;
     }
 }
