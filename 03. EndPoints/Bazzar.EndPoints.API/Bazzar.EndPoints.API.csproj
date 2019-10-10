@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EventStore.Client" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\01. Core\Bazzar.Core.ApplicationServices\Bazzar.Core.ApplicationServices.csproj" />
+    <ProjectReference Include="..\..\02. Infrastructures\Data\Bazzar.Infrastructures.Data.EventStore\Bazzar.Infrastructures.Data.EventStore.csproj" />
     <ProjectReference Include="..\..\02. Infrastructures\Data\Bazzar.Infrastructures.Data.InMemory\Bazzar.Infrastructures.Data.InMemory.csproj" />
     <ProjectReference Include="..\..\02. Infrastructures\Data\Bazzar.Infrastructures.Data.SqlServer\Bazzar.Infrastructures.Data.SqlServer.csproj" />
   </ItemGroup>

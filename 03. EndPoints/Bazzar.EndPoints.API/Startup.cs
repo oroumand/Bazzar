@@ -2,9 +2,11 @@ using Bazzar.Core.ApplicationServices.Advertisements.CommandHandlers;
 using Bazzar.Core.ApplicationServices.UserProfiles.CommandHandlers;
 using Bazzar.Core.Domain.Advertisements.Data;
 using Bazzar.Core.Domain.UserProfiles.Data;
+using Bazzar.Infrastructures.Data.EventStore;
 using Bazzar.Infrastructures.Data.SqlServer;
 using Bazzar.Infrastructures.Data.SqlServer.Advertisments;
 using Bazzar.Infrastructures.Data.SqlServer.UserProfiles;
+using EventStore.ClientAPI;
 using Framework.Domain.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,16 +16,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace Bazzar.EndPoints.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Configuration = configuration;
+            Environment = environment;
         }
-
+        private IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -33,7 +37,14 @@ namespace Bazzar.EndPoints.API
 
             //services.AddSingleton<IAdvertisementsRepository, FakeAdvertisementsRepository>();
             //services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
-            
+
+            var esConnection = EventStoreConnection.Create(Configuration["EventStore:ConnectionString"],ConnectionSettings.Create().KeepReconnecting(),Environment.ApplicationName);
+            esConnection.ConnectAsync().Wait();
+            var store = new BazzarEventSource(esConnection);
+
+            services.AddSingleton(esConnection);
+            services.AddSingleton<IEventSource>(store);
+
             services.AddScoped<IAdvertisementQueryService, SqlAdvertisementQueryService>();
             services.AddScoped(c=>new SqlConnection(Configuration.GetConnectionString("AddvertismentCnn")));
             services.AddScoped<IAdvertisementsRepository, EfAdvertismentRepository>();

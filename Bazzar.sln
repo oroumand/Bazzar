@@ -17,15 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazzar.Core.Domain", "01. C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Tools", "Framework.Tools\Framework.Tools.csproj", "{8BFB53C2-3536-496D-A3A8-688508DA3996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Core.ApplicationServices", "01. Core\Bazzar.Core.ApplicationServices\Bazzar.Core.ApplicationServices.csproj", "{8C17C513-657B-44AB-8385-95D9DE0403D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazzar.Core.ApplicationServices", "01. Core\Bazzar.Core.ApplicationServices\Bazzar.Core.ApplicationServices.csproj", "{8C17C513-657B-44AB-8385-95D9DE0403D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{ECE481DD-B337-41FA-A8AD-92372C08567A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Infrastructures.Data.InMemory", "02. Infrastructures\Data\Bazzar.Infrastructures.Data.InMemory\Bazzar.Infrastructures.Data.InMemory.csproj", "{80F10448-8AD6-4AD5-86E1-14A313AA5A14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazzar.Infrastructures.Data.InMemory", "02. Infrastructures\Data\Bazzar.Infrastructures.Data.InMemory\Bazzar.Infrastructures.Data.InMemory.csproj", "{80F10448-8AD6-4AD5-86E1-14A313AA5A14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.EndPoints.API", "03. EndPoints\Bazzar.EndPoints.API\Bazzar.EndPoints.API.csproj", "{B5118442-3544-4ED0-BB12-993C62A4F8F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazzar.EndPoints.API", "03. EndPoints\Bazzar.EndPoints.API\Bazzar.EndPoints.API.csproj", "{B5118442-3544-4ED0-BB12-993C62A4F8F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Infrastructures.Data.SqlServer", "02. Infrastructures\Data\Bazzar.Infrastructures.Data.SqlServer\Bazzar.Infrastructures.Data.SqlServer.csproj", "{A55AFE07-7284-40D6-8A04-E389621ACECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazzar.Infrastructures.Data.SqlServer", "02. Infrastructures\Data\Bazzar.Infrastructures.Data.SqlServer\Bazzar.Infrastructures.Data.SqlServer.csproj", "{A55AFE07-7284-40D6-8A04-E389621ACECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Infrastructures.Data.EventStore", "02. Infrastructures\Data\Bazzar.Infrastructures.Data.EventStore\Bazzar.Infrastructures.Data.EventStore.csproj", "{04A04CAC-6B7B-4C7D-A9F2-1B85D229211C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{A55AFE07-7284-40D6-8A04-E389621ACECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A55AFE07-7284-40D6-8A04-E389621ACECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A55AFE07-7284-40D6-8A04-E389621ACECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A04CAC-6B7B-4C7D-A9F2-1B85D229211C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A04CAC-6B7B-4C7D-A9F2-1B85D229211C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A04CAC-6B7B-4C7D-A9F2-1B85D229211C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A04CAC-6B7B-4C7D-A9F2-1B85D229211C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{80F10448-8AD6-4AD5-86E1-14A313AA5A14} = {ECE481DD-B337-41FA-A8AD-92372C08567A}
 		{B5118442-3544-4ED0-BB12-993C62A4F8F5} = {3139E42B-7189-4B90-871B-310FFF02945F}
 		{A55AFE07-7284-40D6-8A04-E389621ACECD} = {ECE481DD-B337-41FA-A8AD-92372C08567A}
+		{04A04CAC-6B7B-4C7D-A9F2-1B85D229211C} = {ECE481DD-B337-41FA-A8AD-92372C08567A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66BD7A25-C7AA-44CF-B201-B4E5369B071A}
