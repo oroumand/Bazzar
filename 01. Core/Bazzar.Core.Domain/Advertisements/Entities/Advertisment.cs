@@ -101,14 +101,14 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
                     AdvertismentState.ReviewPending =>
                         Title != null
                         && Text != null
-                        && Price != null
-                        && !Pictures.Any(),
+                        && Price != null,
+                        //&& !Pictures.Any(),
                     AdvertismentState.Active =>
                         Title != null
                         && Text != null
                         && Price != null
-                        && ApprovedBy != null
-                        && !Pictures.Any(),
+                        && ApprovedBy != null,
+                        //&& !Pictures.Any(),
                     _ => true
                 });
             if (!isValid)

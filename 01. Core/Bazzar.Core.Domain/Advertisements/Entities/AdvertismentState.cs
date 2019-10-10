@@ -4,13 +4,13 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
 {
     public enum AdvertismentState
     {
-        [Description("در انتظار تایید")]
-        ReviewPending,
-        [Description("فعال")]
-        Active,
         [Description("غیرفعال")]
-        Inactive,
+        Inactive = 1,
+        [Description("در انتظار تایید")]
+        ReviewPending = 2,
+        [Description("فعال")]
+        Active = 3,
         [Description("فروخته شده")]
-        Sold
+        Sold = 4
     }
 }
