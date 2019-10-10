@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Infrastructures.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.EndPoints.API", "03. EndPoints\Bazzar.EndPoints.API\Bazzar.EndPoints.API.csproj", "{B5118442-3544-4ED0-BB12-993C62A4F8F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazzar.Infrastructures.Data.SqlServer", "02. Infrastructures\Data\Bazzar.Infrastructures.Data.SqlServer\Bazzar.Infrastructures.Data.SqlServer.csproj", "{A55AFE07-7284-40D6-8A04-E389621ACECD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{B5118442-3544-4ED0-BB12-993C62A4F8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5118442-3544-4ED0-BB12-993C62A4F8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5118442-3544-4ED0-BB12-993C62A4F8F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A55AFE07-7284-40D6-8A04-E389621ACECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55AFE07-7284-40D6-8A04-E389621ACECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55AFE07-7284-40D6-8A04-E389621ACECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55AFE07-7284-40D6-8A04-E389621ACECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{ECE481DD-B337-41FA-A8AD-92372C08567A} = {6ECB53B5-B7DE-4F51-A84C-65E4F023FA9B}
 		{80F10448-8AD6-4AD5-86E1-14A313AA5A14} = {ECE481DD-B337-41FA-A8AD-92372C08567A}
 		{B5118442-3544-4ED0-BB12-993C62A4F8F5} = {3139E42B-7189-4B90-871B-310FFF02945F}
+		{A55AFE07-7284-40D6-8A04-E389621ACECD} = {ECE481DD-B337-41FA-A8AD-92372C08567A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66BD7A25-C7AA-44CF-B201-B4E5369B071A}

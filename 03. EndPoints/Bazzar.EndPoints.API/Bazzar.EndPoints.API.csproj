@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0-rc4" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0-rc4" />
@@ -14,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\01. Core\Bazzar.Core.ApplicationServices\Bazzar.Core.ApplicationServices.csproj" />
     <ProjectReference Include="..\..\02. Infrastructures\Data\Bazzar.Infrastructures.Data.InMemory\Bazzar.Infrastructures.Data.InMemory.csproj" />
+    <ProjectReference Include="..\..\02. Infrastructures\Data\Bazzar.Infrastructures.Data.SqlServer\Bazzar.Infrastructures.Data.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

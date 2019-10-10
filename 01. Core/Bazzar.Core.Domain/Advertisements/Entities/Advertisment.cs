@@ -21,6 +21,10 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         #endregion
 
         #region Constructors
+        private Advertisment()
+        {
+
+        }
         public Advertisment(Guid id, UserId ownerId)
         {
             HandleEvent(new AdvertismentCreated
