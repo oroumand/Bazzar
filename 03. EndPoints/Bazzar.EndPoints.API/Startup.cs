@@ -1,26 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Bazzar.Core.ApplicationServices.Advertisements.CommandHandlers;
 using Bazzar.Core.ApplicationServices.UserProfiles.CommandHandlers;
 using Bazzar.Core.Domain.Advertisements.Data;
 using Bazzar.Core.Domain.UserProfiles.Data;
-using Bazzar.Infrastructures.Data.InMemory;
-using Bazzar.Infrastructures.Data.InMemory.Advertisments;
 using Bazzar.Infrastructures.Data.SqlServer;
 using Bazzar.Infrastructures.Data.SqlServer.Advertisments;
 using Bazzar.Infrastructures.Data.SqlServer.UserProfiles;
 using Framework.Domain.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Bazzar.EndPoints.API
@@ -41,7 +33,9 @@ namespace Bazzar.EndPoints.API
 
             //services.AddSingleton<IAdvertisementsRepository, FakeAdvertisementsRepository>();
             //services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
-
+            
+            services.AddScoped<IAdvertisementQueryService, SqlAdvertisementQueryService>();
+            services.AddScoped(c=>new SqlConnection(Configuration.GetConnectionString("AddvertismentCnn")));
             services.AddScoped<IAdvertisementsRepository, EfAdvertismentRepository>();
             services.AddScoped<IUserProfileRepository, EFUserProfileRepository>();
 

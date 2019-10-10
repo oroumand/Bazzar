@@ -1,11 +1,7 @@
 ﻿using Bazzar.Core.Domain.Advertisements.Data;
 using Bazzar.Core.Domain.Advertisements.Entities;
-using Bazzar.Core.Domain.Advertisements.ValueObjects;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bazzar.Infrastructures.Data.SqlServer.Advertisments
 {
@@ -31,6 +27,7 @@ namespace Bazzar.Infrastructures.Data.SqlServer.Advertisments
         {
             return  advertismentDbContext.Advertisments.Find(id);
         }
+       
         public void Dispose()
         {
             advertismentDbContext.Dispose();
