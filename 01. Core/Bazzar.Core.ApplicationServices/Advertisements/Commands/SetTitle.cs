@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bazzar.Core.Domain.Advertisements.Commands
+namespace Bazzar.Core.ApplicationServices.Advertisements.Commands
 {
     public class SetTitle
     {

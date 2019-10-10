@@ -1,4 +1,4 @@
-﻿using Bazzar.Core.Domain.Advertisements.Commands;
+﻿using Bazzar.Core.ApplicationServices.Advertisements.Commands;
 using Bazzar.Core.Domain.Advertisements.Data;
 using Bazzar.Core.Domain.Advertisements.ValueObjects;
 using Framework.Domain.ApplicationServices;
