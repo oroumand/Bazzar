@@ -5,19 +5,21 @@ using Framework.Domain.Events;
 using Framework.Domain.Exceptions;
 using Framework.Tools.Enums;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Bazzar.Core.Domain.Advertisements.Entities
 {
-    public class Advertisment : BaseEntity<Guid>
+    public class Advertisment : BaseAggregateRoot<Guid>
     {
-        #region Fields
-        public Guid Id { get; protected set; }
+        #region Fields    
         public UserId OwnerId { get; protected set; }
         public UserId ApprovedBy { get; protected set; }
         public AdvertismentTitle Title { get; protected set; }
         public AdvertismentText Text { get; protected set; }
         public Price Price { get; protected set; }
         public AdvertismentState State { get; protected set; }
+        public List<Picture> Pictures { get; private set; }
         #endregion
 
         #region Constructors
@@ -27,6 +29,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         }
         public Advertisment(Guid id, UserId ownerId)
         {
+            Pictures = new List<Picture>();
             HandleEvent(new AdvertismentCreated
             {
                 Id = id,
@@ -38,9 +41,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
         #region Methods
         public void SetTitle(AdvertismentTitle title)
         {
-            Title = title;
-            ValidateInvariants();
-            Raise(new AdvertismentTitleChanged
+            HandleEvent(new AdvertismentTitleChanged
             {
                 Id = Id,
                 Title = title
@@ -69,7 +70,27 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
                 Id = Id,
             });
         }
-
+        public void AddPicture(Uri pictureUri, PictureSize size)
+        {
+            var newPic = new Picture(HandleEvent);
+            newPic.HandleEvent(new PictureAddedToAdvertisment
+            {
+                PictureId = new Guid(),
+                ClassifiedAdId = Id,
+                Url = pictureUri.ToString(),
+                Height = size.Height,
+                Width = size.Width
+            });
+            Pictures.Add(newPic);
+        }
+        public void ResizePicture(Guid pictureId, PictureSize newSize)
+        {
+            var picture = FindPicture(pictureId);
+            if (picture == null)
+                throw new InvalidOperationException(
+                "تصویری با شناسه وارد شده وجود برای تغییر سایز وجود ندارد");
+            picture.Resize(newSize);
+        }
         protected override void ValidateInvariants()
         {
             var isValid =
@@ -80,12 +101,14 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
                     AdvertismentState.ReviewPending =>
                         Title != null
                         && Text != null
-                        && Price != null,
+                        && Price != null
+                        && !Pictures.Any(),
                     AdvertismentState.Active =>
                         Title != null
                         && Text != null
                         && Price != null
-                        && ApprovedBy != null,
+                        && ApprovedBy != null
+                        && !Pictures.Any(),
                     _ => true
                 });
             if (!isValid)
@@ -104,7 +127,7 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
                     State = AdvertismentState.Inactive;
                     break;
                 case AdvertismentPriceUpdated e:
-                    Price = new Price(Rial.FromLong( e.Price));
+                    Price = new Price(Rial.FromLong(e.Price));
                     break;
                 case AdvertismentSentForReview e:
                     State = AdvertismentState.ReviewPending;
@@ -115,10 +138,15 @@ namespace Bazzar.Core.Domain.Advertisements.Entities
                 case AdvertismentTitleChanged e:
                     Title = new AdvertismentTitle(e.Title);
                     break;
+                case PictureAddedToAdvertisment e:
+                    break;
+                case AdvertismentPictureResized e:
+                    break;
                 default:
                     throw new InvalidOperationException("امکان اجرای عملیات درخواستی وجود ندارد");
             }
         }
+        private Picture FindPicture(Guid id) => Pictures.FirstOrDefault(x => x.Id == id);
         #endregion
 
     }
