@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bazzar.Core.ApplicationServices.Advertisements.CommandHandlers;
-using Bazzar.Core.ApplicationServices.Advertisements.Commands;
+using Bazzar.Core.Domain.Advertisements.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bazzar.Core.ApplicationServices.UserProfiles.CommandHandlers;
-using Bazzar.Core.ApplicationServices.UserProfiles.Commands;
+using Bazzar.Core.Domain.UserProfiles.Commands;
 using Bazzar.EndPoints.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

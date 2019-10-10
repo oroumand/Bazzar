@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bazzar.Core.ApplicationServices.UserProfiles.Commands
+namespace Bazzar.Core.Domain.UserProfiles.Commands
 {
     public class RegisterUser
     {

@@ -1,4 +1,4 @@
-﻿using Bazzar.Core.ApplicationServices.UserProfiles.Commands;
+﻿using Bazzar.Core.Domain.UserProfiles.Commands;
 using Bazzar.Core.Domain.UserProfiles.Data;
 using Bazzar.Core.Domain.UserProfiles.Entities;
 using Bazzar.Core.Domain.UserProfiles.ValueObjects;

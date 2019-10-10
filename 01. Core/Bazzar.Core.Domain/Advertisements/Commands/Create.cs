@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bazzar.Core.ApplicationServices.Advertisements.Commands
+namespace Bazzar.Core.Domain.Advertisements.Commands
 {
     public class Create
     {

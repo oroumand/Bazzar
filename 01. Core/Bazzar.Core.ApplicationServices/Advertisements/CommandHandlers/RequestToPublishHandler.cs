@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Bazzar.Core.ApplicationServices.Advertisements.Commands;
+using Bazzar.Core.Domain.Advertisements.Commands;
 using Bazzar.Core.Domain.Advertisements.Data;
 using Framework.Domain.ApplicationServices;
 using Framework.Domain.Data;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bazzar.Core.ApplicationServices.UserProfiles.Commands
+namespace Bazzar.Core.Domain.UserProfiles.Commands
 {
     public class UpdateUserName
     {
